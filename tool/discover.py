@@ -3,7 +3,7 @@ import os
 import socket
 import multiprocessing
 import subprocess
-import os
+
 
 
 def pinger(job_q, results_q):
@@ -22,7 +22,7 @@ def pinger(job_q, results_q):
             break
 
         try:
-            subprocess.check_call(['ping', '-c1', ip],
+            subprocess.check_call(['ping', ip],
                                   stdout=DEVNULL)
             results_q.put(ip)
             return ip
@@ -78,6 +78,7 @@ def map_network(pool_size=255):
     while not results.empty():
         ip = results.get()
         ip_list.append(ip)
-
+    print(ip_list)
     return ip_list
-
+ip = map_network()
+print(ip)

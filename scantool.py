@@ -112,7 +112,7 @@ class Ui_MainWindow(object):
         self.scannedips.addItem(d)
         QtWidgets.QApplication.processEvents()
     def nmscanner(self):
-      os.system("python3 app.py")
+      os.system("python  terminal.py")
 
 if __name__ == "__main__":
     import sys

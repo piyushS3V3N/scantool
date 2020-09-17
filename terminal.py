@@ -50,7 +50,7 @@ class Example(QtWidgets.QMainWindow):
             result,err = buff.communicate()
             print(err)
             self.textBrowser.setText( self.textBrowser.toPlainText() + "\n$ "+ cmd +"\n"+ result.decode("utf-8")  )
-       self.textBrowser.verticalScrollBar().setValue(self.textBrowser.verticalScrollBar().maximum())
+        self.textBrowser.verticalScrollBar().setValue(self.textBrowser.verticalScrollBar().maximum())
 
     #def onClick(self):
     #    if len(self.lineEditName.text()) < 1:
