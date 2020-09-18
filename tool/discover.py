@@ -22,8 +22,7 @@ def pinger(job_q, results_q):
             break
 
         try:
-            subprocess.check_call(['ping', ip],
-                                  stdout=DEVNULL)
+            subprocess.check_call(['ping','-n', ip])
             results_q.put(ip)
             return ip
         except:
@@ -80,5 +79,4 @@ def map_network(pool_size=255):
         ip_list.append(ip)
     print(ip_list)
     return ip_list
-ip = map_network()
-print(ip)
+

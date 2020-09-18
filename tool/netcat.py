@@ -1,22 +1,22 @@
-#!/usr/bin/python3
-import os
+import nmap
 import socket
-def listener():
-    port = input("Enter a port to start listener : ")
-    hostname = socket.gethostname()
-    ipaddr = socket.gethostbyname(hostname)
-    print("Your IP Address is : " + ipaddr)
-    print("Port " + port)
-    cmd = "nc -l "+port
-    os.system(cmd)
-def connect():
-    defaulthost = '127.0.0.1'
-    defaultport = 4444
-    host = input("Enter your host ip address (default: 127.0.0.1): ")
-    port = input("Enter your port (deafult:4444): ")
-    if(len(host) == 0):
-      host = defaulthost
-    if(len(port) == 0):
-      port = defaultport
-    cmd = "nc " + host + " " + str(port)
-    os.system(cmd)
+nm = nmap.PortScanner()
+def get_my_ip():
+    """
+    Find my IP address
+    :return:
+    """
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ip = s.getsockname()[0]
+    s.close()
+    return ip
+ip_parts = get_my_ip().split('.')
+base_ip = ip_parts[0] + '.' + ip_parts[1] + '.' + ip_parts[2] + '.1/24'
+print(base_ip)
+nm.scan(hosts=base_ip, arguments='-n -sP -PE -PA21,23,80,3389')
+
+hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
+
+for host, status in hosts_list:
+    print('{0}:{1}'.format(host, status))

@@ -58,7 +58,8 @@ class Example(QtWidgets.QMainWindow):
     #    else:
     #        os.system("sudo apt-get install " + self.lineEditName.text())
 
-app = QtWidgets.QApplication([])
-win = Example()
-win.show()
-sys.exit(app.exec())
+def start():
+    app = QtWidgets.QApplication([])
+    win = Example()
+    win.show()
+    sys.exit(app.exec())
