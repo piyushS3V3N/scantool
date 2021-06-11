@@ -1,0 +1,4 @@
+python-nmap
+pyqt5
+scapy
+networkx

@@ -9,7 +9,7 @@ data = []
 def run(target):
     #target = input('Enter the host to be scanned: ')
     t_IP = socket.gethostbyname(target)
-    print ('Starting scan on host: ', t_IP)
+    #print ('Starting scan on host: ', t_IP)
 
     def portscan(port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -39,5 +39,5 @@ def run(target):
     for worker in range(1, 500):
         q.put(worker)
     q.join()
-    print('Time taken:', time.time() - startTime)
+    #print('Time taken:', time.time() - startTime)
     return data,t_IP
